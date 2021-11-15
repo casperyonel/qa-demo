@@ -33,4 +33,39 @@ let testData = {
       let formattedTitle = formatTitle(testData.title)
       expect(typeof formattedTitle).toBe("string")
     })
+    // formattedTitle exists only in its own local scope, so can use same
+    test("formatTitle should format title correctly", () => {
+      let formattedTitle = formatTitle(testData.title)
+      expect(formattedTitle).toBe("Nulla Ac")
+      // Format title function makes it uppercase
+    })
   })
+
+  describe("shortenBio", () => {
+    test("shotenBio should shorten the bio string", () => {
+      let shortBio = shortenBio(testData.bio)
+      expect(shortBio.length).toBeLessThan(testData.bio.length)
+      // .length makes it count the numbers of Chars including whitespaces to compare length of each string
+    })
+    test("shorternBio should add peiods to the end of the strings", () => {
+      let shortBio = shortenBio(testData.bio)
+      expect(shortBio).toContain("...")
+    })
+  })
+
+
+  test("Testing toBe vs. toEqual", () => {
+    const myObj = {myNum: 4}
+    const myObjTwo = {myNum: 4}
+    expect(myObj).toEqual(myObjTwo)
+  })
+
+  test("Testing toBe vs. toEqual one more time", () => {
+    const myObj = {myNum: 4}
+    const myObjTwo = {myNum: 4}
+    expect(myObj).toBe(myObjTwo)
+  })
+  // This one spits an error, while toEqual passes
+
+
+// toBe vs. toEqual = toBe checks for primitive value type. Numbers, strings, and booleans are PRIMITIVE types, everything else is REFERNCE type. Objects are not primitive, so toBe is false because it's checking for
